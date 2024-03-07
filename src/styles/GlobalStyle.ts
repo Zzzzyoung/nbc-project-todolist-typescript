@@ -53,6 +53,7 @@ table {
   box-sizing: border-box;
 }
 :root {
+	margin: 0 auto;
 	min-width:320px;
 	max-width:1280px;
 	-webkit-font-smoothing: antialiased;
