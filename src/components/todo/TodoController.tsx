@@ -2,14 +2,14 @@ import uuid from "react-uuid";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { Todo } from "../type/Todo";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/config/configStore";
 import { addTodo, deleteTodo, updateTodo } from "../../redux/modules/todoSlice";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const TodoController: React.FC = () => {
-  const dispatch = useDispatch();
-  const todos = useSelector((state: RootState) => state.todos);
+  const dispatch = useAppDispatch();
+  const todos = useAppSelector((state: RootState) => state.todos);
   const workingTodos = todos.filter((todo) => !todo.isDone);
   const doneTodos = todos.filter((todo) => todo.isDone);
 
