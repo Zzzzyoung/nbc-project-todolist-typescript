@@ -1,5 +1,5 @@
 import React from "react";
-import { Todo } from "./TodoController";
+import { Todo } from "../type/Todo";
 import {
   StDeleteButton,
   StItemContainer,
