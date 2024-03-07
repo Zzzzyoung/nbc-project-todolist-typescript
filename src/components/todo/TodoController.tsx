@@ -93,8 +93,12 @@ const TodoController: React.FC = () => {
   // Todo 상태 업데이트하기 (완료/취소)
   const clickUpdateTodoButton = async (id: string) => {
     try {
-      await todoApi.patch(`/todos/${id}`);
-      dispatch(updateTodo(id));
+      const todoToUpdate = todos.find((todo) => todo.id === id);
+
+      if (todoToUpdate) {
+        await todoApi.patch(`/todos/${id}`, { isDone: !todoToUpdate.isDone });
+        dispatch(updateTodo(id));
+      }
     } catch (error) {
       console.error(error);
       alert("Todo 업데이트 중에 오류가 발생했습니다.");
