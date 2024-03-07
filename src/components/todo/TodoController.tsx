@@ -1,13 +1,20 @@
-import { useState } from "react";
 import uuid from "react-uuid";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { Todo } from "../type/Todo";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/config/configStore";
+import { addTodo, deleteTodo, updateTodo } from "../../redux/modules/todoSlice";
+import { useState } from "react";
 
 const TodoController: React.FC = () => {
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("");
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const dispatch = useDispatch();
+  const todos = useSelector((state: RootState) => state.todos);
+  const workingTodos = todos.filter((todo) => !todo.isDone);
+  const doneTodos = todos.filter((todo) => todo.isDone);
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const onChangeTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(event.target.value);
@@ -36,7 +43,7 @@ const TodoController: React.FC = () => {
         isDone: false
       };
 
-      setTodos([...todos, newTodo]);
+      dispatch(addTodo(newTodo));
       setTitle("");
       setContent("");
     }
@@ -46,21 +53,14 @@ const TodoController: React.FC = () => {
   const clickDeleteTodoButton = (id: string) => {
     const checkDelete = window.confirm("정말 삭제하시겠습니까?");
     if (checkDelete) {
-      const remainTodo = todos.filter((todo) => todo.id !== id);
-      setTodos(remainTodo);
+      dispatch(deleteTodo(id));
     }
   };
 
   // Todo 상태 업데이트하기 (완료/취소)
   const clickUpdateTodoButton = (id: string) => {
-    const updateTodo = todos.map((todo) =>
-      todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-    );
-    setTodos(updateTodo);
+    dispatch(updateTodo(id));
   };
-
-  const workingTodos = todos.filter((todo) => !todo.isDone);
-  const doneTodos = todos.filter((todo) => todo.isDone);
 
   return (
     <main>

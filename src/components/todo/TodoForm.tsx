@@ -8,17 +8,17 @@ import {
 interface TodoFormProps {
   title: string;
   content: string;
-  clickAddTodoButton: (event: React.FormEvent) => void;
   onChangeTitleHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeContentHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  clickAddTodoButton: (event: React.FormEvent) => void;
 }
 
 const TodoForm: React.FC<TodoFormProps> = ({
   title,
   content,
-  clickAddTodoButton,
   onChangeTitleHandler,
-  onChangeContentHandler
+  onChangeContentHandler,
+  clickAddTodoButton
 }) => {
   return (
     <StSubmitContainer onSubmit={clickAddTodoButton}>
