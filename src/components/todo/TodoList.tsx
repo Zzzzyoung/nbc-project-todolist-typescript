@@ -1,7 +1,7 @@
 import React from "react";
 import { Todo } from "./TodoController";
 import TodoItem from "./TodoItem";
-import styled from "styled-components";
+import { StListContainer, StTodoList } from "../../styles/TodoListStyle";
 
 interface TodoListProps {
   headTitle: string;
@@ -34,20 +34,3 @@ const TodoList: React.FC<TodoListProps> = ({
 };
 
 export default TodoList;
-
-const StListContainer = styled.section`
-  margin: 50px auto 60px auto;
-  padding: 0 30px;
-
-  h2 {
-    font-size: 22px;
-    font-weight: 600;
-  }
-`;
-
-const StTodoList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 50px;
-  margin-top: 25px;
-`;
