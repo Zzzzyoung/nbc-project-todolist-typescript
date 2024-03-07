@@ -52,4 +52,17 @@ table {
 * {
   box-sizing: border-box;
 }
+:root {
+	min-width:320px;
+	max-width:1280px;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+button {
+	cursor: pointer;
+}
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+    color:black;
+}
 `;

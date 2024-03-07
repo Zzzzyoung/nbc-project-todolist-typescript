@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <div>App</div>;
+      <div>App</div>
     </>
   );
 }
