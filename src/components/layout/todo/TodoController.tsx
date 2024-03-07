@@ -65,6 +65,9 @@ const TodoController: React.FC = () => {
     setTodos(updateTodo);
   };
 
+  const workingTodos = todos.filter((todo) => !todo.isDone);
+  const doneTodos = todos.filter((todo) => todo.isDone);
+
   return (
     <>
       <h1>Todo List</h1>
@@ -77,7 +80,14 @@ const TodoController: React.FC = () => {
           clickAddTodoButton={clickAddTodoButton}
         />
         <TodoList
-          todos={todos}
+          headTitle="Working..🔥"
+          todos={workingTodos}
+          clickDeleteTodoButton={clickDeleteTodoButton}
+          clickUpdateTodoButton={clickUpdateTodoButton}
+        />
+        <TodoList
+          headTitle="Done..!🎉"
+          todos={doneTodos}
           clickDeleteTodoButton={clickDeleteTodoButton}
           clickUpdateTodoButton={clickUpdateTodoButton}
         />
