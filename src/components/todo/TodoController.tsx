@@ -3,19 +3,18 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { Todo } from "../types/Todo";
 import { RootState } from "../../redux/config/configStore";
-import {
-  addTodo,
-  deleteTodo,
-  setTodos,
-  updateTodo
-} from "../../redux/modules/todoSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import todoApi from "../../apis/todo";
+import {
+  __addTodo,
+  __deleteTodo,
+  __setTodos,
+  __updateTodo
+} from "../../redux/modules/todoSlice";
 
 const TodoController: React.FC = () => {
   const dispatch = useAppDispatch();
-  const todos = useAppSelector((state: RootState) => state.todos);
+  const { todos } = useAppSelector((state: RootState) => state.todos);
   const workingTodos = todos.filter((todo) => !todo.isDone);
   const doneTodos = todos.filter((todo) => todo.isDone);
 
@@ -32,8 +31,7 @@ const TodoController: React.FC = () => {
   useEffect(() => {
     const getTodos = async () => {
       try {
-        const { data } = await todoApi.get("/todos");
-        dispatch(setTodos(data));
+        dispatch(__setTodos());
       } catch (error) {
         console.error(error);
         alert("데이터를 가져오는 중에 오류가 발생했습니다.");
@@ -64,9 +62,7 @@ const TodoController: React.FC = () => {
           isDone: false
         };
 
-        const { data } = await todoApi.post("/todos", newTodo);
-
-        dispatch(addTodo(data));
+        await dispatch(__addTodo(newTodo));
         setTitle("");
         setContent("");
       }
@@ -81,8 +77,7 @@ const TodoController: React.FC = () => {
     const checkDelete = window.confirm("정말 삭제하시겠습니까?");
     if (checkDelete) {
       try {
-        await todoApi.delete(`/todos/${id}`);
-        dispatch(deleteTodo(id));
+        await dispatch(__deleteTodo(id));
       } catch (error) {
         console.error(error);
         alert("Todo 삭제 중에 오류가 발생했습니다.");
@@ -96,8 +91,7 @@ const TodoController: React.FC = () => {
       const todoToUpdate = todos.find((todo) => todo.id === id);
 
       if (todoToUpdate) {
-        await todoApi.patch(`/todos/${id}`, { isDone: !todoToUpdate.isDone });
-        dispatch(updateTodo(id));
+        await dispatch(__updateTodo({ id, isDone: !todoToUpdate.isDone }));
       }
     } catch (error) {
       console.error(error);
