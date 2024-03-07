@@ -54,6 +54,7 @@ table {
 }
 :root {
 	margin: 0 auto;
+	height:100vh;
 	min-width:320px;
 	max-width:1280px;
 	-webkit-font-smoothing: antialiased;
@@ -61,6 +62,7 @@ table {
 }
 button {
 	cursor: pointer;
+	transition: all 0.3s ease;
 }
 a:hover, a:visited, a:link, a:active {
     text-decoration: none;

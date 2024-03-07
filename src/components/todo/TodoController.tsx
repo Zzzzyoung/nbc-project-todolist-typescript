@@ -69,30 +69,27 @@ const TodoController: React.FC = () => {
   const doneTodos = todos.filter((todo) => todo.isDone);
 
   return (
-    <>
-      <h1>Todo List</h1>
-      <main>
-        <TodoForm
-          title={title}
-          content={content}
-          onChangeTitleHandler={onChangeTitleHandler}
-          onChangeContentHandler={onChangeContentHandler}
-          clickAddTodoButton={clickAddTodoButton}
-        />
-        <TodoList
-          headTitle="Working..🔥"
-          todos={workingTodos}
-          clickDeleteTodoButton={clickDeleteTodoButton}
-          clickUpdateTodoButton={clickUpdateTodoButton}
-        />
-        <TodoList
-          headTitle="Done..!🎉"
-          todos={doneTodos}
-          clickDeleteTodoButton={clickDeleteTodoButton}
-          clickUpdateTodoButton={clickUpdateTodoButton}
-        />
-      </main>
-    </>
+    <main>
+      <TodoForm
+        title={title}
+        content={content}
+        onChangeTitleHandler={onChangeTitleHandler}
+        onChangeContentHandler={onChangeContentHandler}
+        clickAddTodoButton={clickAddTodoButton}
+      />
+      <TodoList
+        headTitle="Working..🔥"
+        todos={workingTodos}
+        clickDeleteTodoButton={clickDeleteTodoButton}
+        clickUpdateTodoButton={clickUpdateTodoButton}
+      />
+      <TodoList
+        headTitle="Done..!🎉"
+        todos={doneTodos}
+        clickDeleteTodoButton={clickDeleteTodoButton}
+        clickUpdateTodoButton={clickUpdateTodoButton}
+      />
+    </main>
   );
 };
 
