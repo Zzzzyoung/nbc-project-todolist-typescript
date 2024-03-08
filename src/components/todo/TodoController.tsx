@@ -2,7 +2,7 @@ import { useState } from "react";
 import uuid from "react-uuid";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
-import { Todo } from "../types/Todo";
+import { Todo } from "../types/todo.d";
 
 const TodoController: React.FC = () => {
   const [title, setTitle] = useState<string>("");
