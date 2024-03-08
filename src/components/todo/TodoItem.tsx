@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { Todo } from "../types/Todo";
 import {
   StDeleteButton,
@@ -8,17 +8,17 @@ import {
   StUpdateButton
 } from "../../styles/TodoItemStyle";
 
-interface TodoItemProps {
+type TodoItemProps = {
   todo: Todo;
   clickDeleteTodoButton: (id: string) => void;
   clickUpdateTodoButton: (id: string) => void;
-}
+};
 
-const TodoItem: React.FC<TodoItemProps> = ({
+const TodoItem = ({
   todo,
   clickDeleteTodoButton,
   clickUpdateTodoButton
-}) => {
+}: PropsWithChildren<TodoItemProps>) => {
   return (
     <StItemContainer key={todo.id}>
       <StTodoItem>
