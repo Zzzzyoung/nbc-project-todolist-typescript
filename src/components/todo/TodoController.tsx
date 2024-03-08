@@ -55,7 +55,7 @@ const TodoController: React.FC = () => {
   const doneTodos = data?.filter((item) => item.isDone) || [];
 
   // Todo 추가하기
-  const clickAddTodoButton = async (event: React.FormEvent) => {
+  const clickAddTodoButton = (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!title.trim()) {
@@ -66,50 +66,35 @@ const TodoController: React.FC = () => {
       return;
     }
 
-    try {
-      const checkAdd = window.confirm("할 일을 추가하시겠습니까?");
-      if (checkAdd) {
-        const newTodo: Todo = {
-          id: shortId.generate(),
-          title,
-          content,
-          isDone: false
-        };
+    const checkAdd = window.confirm("할 일을 추가하시겠습니까?");
+    if (checkAdd) {
+      const newTodo: Todo = {
+        id: shortId.generate(),
+        title,
+        content,
+        isDone: false
+      };
 
-        addTodoMutation.mutate(newTodo);
-        setTitle("");
-        setContent("");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Todo 추가 중에 오류가 발생했습니다.");
+      addTodoMutation.mutate(newTodo);
+      setTitle("");
+      setContent("");
     }
   };
 
   // Todo 삭제하기
-  const clickDeleteTodoButton = async (id: string) => {
+  const clickDeleteTodoButton = (id: string) => {
     const checkDelete = window.confirm("정말 삭제하시겠습니까?");
     if (checkDelete) {
-      try {
-        await deleteTodoMutation.mutate(id);
-      } catch (error) {
-        console.error(error);
-        alert("Todo 삭제 중에 오류가 발생했습니다.");
-      }
+      deleteTodoMutation.mutate(id);
     }
   };
 
   // Todo 상태 업데이트하기 (완료/취소)
-  const clickUpdateTodoButton = async (id: string) => {
-    try {
-      const todoToUpdate = data?.find((item) => item.id === id);
+  const clickUpdateTodoButton = (id: string) => {
+    const todoToUpdate = data?.find((item) => item.id === id);
 
-      if (todoToUpdate) {
-        await updateTodoMutation.mutate({ id, isDone: !todoToUpdate.isDone });
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Todo 업데이트 중에 오류가 발생했습니다.");
+    if (todoToUpdate) {
+      updateTodoMutation.mutate({ id, isDone: !todoToUpdate.isDone });
     }
   };
 
