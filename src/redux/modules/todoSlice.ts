@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Todo } from "../../components/types/Todo";
 import todoApi from "../../apis/todo";
+import { stat } from "fs";
 
 interface TodoState {
   todos: Todo[];
@@ -42,7 +43,7 @@ export const __addTodo = createAsyncThunk<Todo, Todo>(
   }
 );
 
-export const __deleteTodo = createAsyncThunk<Todo[], string>(
+export const __deleteTodo = createAsyncThunk<Todo, string>(
   "deleteTodo",
   async (id, thunkAPI) => {
     try {
@@ -56,12 +57,12 @@ export const __deleteTodo = createAsyncThunk<Todo[], string>(
 );
 
 export const __updateTodo = createAsyncThunk<
-  Todo[],
+  Todo,
   { id: string; isDone: boolean }
 >("updateTodo", async (payload, thunkAPI) => {
   try {
     const { data } = await todoApi.patch(`/todos/${payload.id}`, {
-      isDone: !payload.isDone
+      isDone: payload.isDone
     });
     return thunkAPI.fulfillWithValue(data);
   } catch (error) {
@@ -113,7 +114,10 @@ const todoSlice = createSlice({
       .addCase(__deleteTodo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.todos = action.payload;
+        const targetIndex = state.todos.findIndex(
+          ({ id }) => action.payload.id === id
+        );
+        state.todos.splice(targetIndex, 1);
       })
       .addCase(__deleteTodo.rejected, (state, action) => {
         state.isLoading = false;
@@ -128,7 +132,11 @@ const todoSlice = createSlice({
       .addCase(__updateTodo.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.todos = action.payload;
+        const targetItem = state.todos.find(
+          ({ id }) => action.payload.id === id
+        );
+        if (!targetItem) return;
+        targetItem.isDone = action.payload.isDone;
       })
       .addCase(__updateTodo.rejected, (state, action) => {
         state.isLoading = false;
