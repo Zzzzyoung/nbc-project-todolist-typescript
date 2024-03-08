@@ -1,7 +1,7 @@
 import uuid from "react-uuid";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
-import { Todo } from "../types/Todo";
+import { Todo } from "../types/todo.d";
 import { RootState } from "../../redux/config/configStore";
 import { addTodo, deleteTodo, updateTodo } from "../../redux/modules/todoSlice";
 import { useState } from "react";
