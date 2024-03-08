@@ -18,8 +18,8 @@ const TodoController: React.FC = () => {
   const workingTodos = todos.filter((todo) => !todo.isDone);
   const doneTodos = todos.filter((todo) => todo.isDone);
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
 
   const onChangeTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(event.target.value);
