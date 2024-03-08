@@ -1,7 +1,7 @@
 import shortId from "shortid";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
-import { Todo } from "../types/Todo";
+import { Todo } from "../types/todo.d";
 import { RootState } from "../../redux/config/configStore";
 import {
   addTodo,
@@ -11,7 +11,7 @@ import {
 } from "../../redux/modules/todoSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import todoApi from "../../apis/todo";
+import todoApi from "../../apis/todoApi";
 
 const TodoController: React.FC = () => {
   const dispatch = useAppDispatch();

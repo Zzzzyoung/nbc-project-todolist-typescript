@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import TodoItem from "./TodoItem";
-import { TodoListProps } from "../types/Todo";
+import { TodoListProps } from "../types/todo.d";
 import { StListContainer, StTodoList } from "../../styles/TodoListStyle";
 
 const TodoList = ({
