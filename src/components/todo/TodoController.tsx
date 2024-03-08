@@ -2,21 +2,27 @@ import shortId from "shortid";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { Todo } from "../types/todo.d";
-import { RootState } from "../../redux/config/configStore";
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import {
-  __addTodo,
-  __deleteTodo,
-  __setTodos,
-  __updateTodo
-} from "../../redux/modules/todoSlice";
+import { useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { addTodo, deleteTodo, getTodos, updateTodo } from "../../apis/todoApi";
 
 const TodoController: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { todos } = useAppSelector((state: RootState) => state.todos);
-  const workingTodos = todos.filter((todo) => !todo.isDone);
-  const doneTodos = todos.filter((todo) => todo.isDone);
+  const queryClient = useQueryClient();
+  const addTodoMutation = useMutation(addTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    }
+  });
+  const deleteTodoMutation = useMutation(deleteTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    }
+  });
+  const updateTodoMutation = useMutation(updateTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+    }
+  });
 
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -27,18 +33,19 @@ const TodoController: React.FC = () => {
   const onChangeContentHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
     setContent(event.target.value);
 
-  // Todo 데이터 가져오기
-  useEffect(() => {
-    const getTodos = async () => {
-      try {
-        dispatch(__setTodos());
-      } catch (error) {
-        console.error(error);
-        alert("데이터를 가져오는 중에 오류가 발생했습니다.");
-      }
-    };
-    getTodos();
-  }, [dispatch]);
+  // Todo 가져오기
+  const { isLoading, isError, data } = useQuery("todos", getTodos);
+
+  if (isLoading) {
+    return <p>로딩 중입니다..!</p>;
+  }
+
+  if (isError) {
+    return <p>오류가 발생하였습니다..!</p>;
+  }
+
+  const workingTodos = data?.filter((item) => !item.isDone) || [];
+  const doneTodos = data?.filter((item) => item.isDone) || [];
 
   // Todo 추가하기
   const clickAddTodoButton = async (event: React.FormEvent) => {
@@ -62,7 +69,7 @@ const TodoController: React.FC = () => {
           isDone: false
         };
 
-        await dispatch(__addTodo(newTodo));
+        addTodoMutation.mutate(newTodo);
         setTitle("");
         setContent("");
       }
@@ -77,7 +84,7 @@ const TodoController: React.FC = () => {
     const checkDelete = window.confirm("정말 삭제하시겠습니까?");
     if (checkDelete) {
       try {
-        await dispatch(__deleteTodo(id));
+        await deleteTodoMutation.mutate(id);
       } catch (error) {
         console.error(error);
         alert("Todo 삭제 중에 오류가 발생했습니다.");
@@ -88,10 +95,10 @@ const TodoController: React.FC = () => {
   // Todo 상태 업데이트하기 (완료/취소)
   const clickUpdateTodoButton = async (id: string) => {
     try {
-      const todoToUpdate = todos.find((todo) => todo.id === id);
+      const todoToUpdate = data?.find((item) => item.id === id);
 
       if (todoToUpdate) {
-        await dispatch(__updateTodo({ id, isDone: !todoToUpdate.isDone }));
+        await updateTodoMutation.mutate({ id, isDone: !todoToUpdate.isDone });
       }
     } catch (error) {
       console.error(error);
