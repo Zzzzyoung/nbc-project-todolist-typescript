@@ -4,7 +4,7 @@ import {
   StSubmitContainer,
   StTodoAddButton
 } from "../../styles/TodoFormStyle";
-import { TodoFormProps } from "../types/Todo";
+import { TodoFormProps } from "../types/todo.d";
 
 const TodoForm = ({
   title,

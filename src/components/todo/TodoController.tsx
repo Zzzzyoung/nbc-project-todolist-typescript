@@ -1,7 +1,7 @@
 import shortId from "shortid";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
-import { Todo } from "../types/Todo";
+import { Todo } from "../types/todo.d";
 import { RootState } from "../../redux/config/configStore";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";

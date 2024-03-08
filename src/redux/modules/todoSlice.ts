@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Todo } from "../../components/types/Todo";
-import todoApi from "../../apis/todo";
-import { stat } from "fs";
+import { Todo } from "../../components/types/todo.d";
+import todoApi from "../../apis/todoApi";
 
 interface TodoState {
   todos: Todo[];

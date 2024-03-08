@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { TodoItemProps } from "../types/Todo";
+import { TodoItemProps } from "../types/todo.d";
 import {
   StDeleteButton,
   StItemContainer,
