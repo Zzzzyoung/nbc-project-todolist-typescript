@@ -56,39 +56,7 @@ https://nbc-project-todolist-typescript.vercel.app/
 
 - [X] 레벨1 : React 이용 Todolist
 - [X] 레벨2 : RTK 이용 Todolist
-- [X] 레벨3 : RTK + json-server 이용 Todolist
-- [X] 레벨4 : RTK + redux thunk 이용 Todolist
-- [X] 레벨5 : RTK + react-query 이용 Todolist
-- [ ] 레벨6 : RTK + tanstack-query 이용 Todolist
-<br>
-
-## 🧩 컴포넌트
-
-```
-src
-├── apis
-│   └── todoApi.ts                 # axios를 사용하여 서버로 HTTP 요청
-├── components
-│   ├── layout                     
-│   │   ├── Footer.tsx             # 푸터
-│   │   └── Header.tsx             # 헤더
-│   ├── todo
-│   │   ├── TodoController.tsx     # todo 폴더 내 컴포넌트 제어
-│   │   ├── TodoForm.tsx           # 새로운 Todo 추가
-│   │   ├── TodoItem.tsx           # 각 Todo 아이템마다 삭제 및 상태 변경(완료/취소)
-│   │   └── TodoList.ssx           # 완료된 항목과 진행 중인 항목으로 나누어 현재 Todo 목록 표시
-│   └── types
-│       └── todo.d.tsx             # 타입 정의
-├── redux
-│   ├── config
-│   │   └── configStore.ts         # redux의 스토어 설정
-│   └── modules
-│       └── todoSlice.ts           # RTK를 사용하여 Todo 애플리케이션의 상태를 관리하는 리덕스 슬라이스
-│   └── hooks.ts
-├── styles
-│   ├── FooterStyle.ts             # 푸터 스타일
-│   ├── GlobalStyle.ts             # 전역 스타일
-│   ├── HeaderStyle.tsx            # 헤더 스타일
+- [X] 레벨3 : RTK + json-server 이용러 스타일
 │   ├── TodoFormStyle.ts           # 투두 폼 스타일
 │   ├── TodoITemStyle.ts           # 투두 아이템 스타일
 │   └── TodoListStyle.jsx          # 투두 리스트 스타일
