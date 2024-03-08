@@ -1,17 +1,10 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import {
   StInputContainer,
   StSubmitContainer,
   StTodoAddButton
 } from "../../styles/TodoFormStyle";
-
-type TodoFormProps = {
-  title: string;
-  content: string;
-  onChangeTitleHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onChangeContentHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  clickAddTodoButton: (event: React.FormEvent) => void;
-};
+import { TodoFormProps } from "../types/Todo";
 
 const TodoForm = ({
   title,

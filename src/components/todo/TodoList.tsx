@@ -1,14 +1,7 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import TodoItem from "./TodoItem";
-import { Todo } from "../types/Todo";
+import { TodoListProps } from "../types/Todo";
 import { StListContainer, StTodoList } from "../../styles/TodoListStyle";
-
-type TodoListProps = {
-  headTitle: string;
-  todos: Todo[];
-  clickDeleteTodoButton: (id: string) => void;
-  clickUpdateTodoButton: (id: string) => void;
-};
 
 const TodoList = ({
   headTitle,
