@@ -58,7 +58,8 @@ Todolist를 추가할 수 있으며, 삭제가 가능합니다. 완료/취소 �
 - [X] 레벨2 : RTK 이용 Todolist
 - [X] 레벨3 : RTK + json-server 이용 Todolist
 - [X] 레벨4 : RTK + redux thunk 이용 Todolist
-- [ ] 레벨5 : RTK + react-query 이용 Todolist
+- [X] 레벨5 : RTK + react-query 이용 Todolist
+- [ ] 레벨6 : RTK + tanstack-query 이용 Todolist
 <br>
 
 ## 🧩 컴포넌트
