@@ -13,15 +13,14 @@ export type TodoFormProps = {
   clickAddTodoButton: (event: React.FormEvent) => void;
 };
 
-export type TodoListProps = {
-  headTitle: string;
-  todos: Todo[];
-  clickDeleteTodoButton: (id: string) => void;
-  clickUpdateTodoButton: (id: string) => void;
-};
-
-export type TodoItemProps = {
+export interface TodoProps {
   todo: Todo;
+  todos: Todo[];
+  headTitle: string;
   clickDeleteTodoButton: (id: string) => void;
   clickUpdateTodoButton: (id: string) => void;
-};
+}
+
+export type TodoListProps = Omit<TodoProps, "todo">;
+
+export type TodoItemProps = Omit<TodoProps, "todos" | "headTitle">;
