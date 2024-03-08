@@ -6,20 +6,44 @@ const todoApi = axios.create({
 });
 
 const getTodos = async () => {
-  const { data } = await todoApi.get<Todo[]>("/todos");
-  return data;
+  try {
+    const { data } = await todoApi.get<Todo[]>("/todos");
+    return data;
+  } catch (error) {
+    alert("Todo 데이터를 불러오는 중에 오류가 발생했습니다.");
+    console.error(error);
+    throw error;
+  }
 };
 
 const addTodo = async (newTodo: Todo) => {
-  await todoApi.post("/todos", newTodo);
+  try {
+    await todoApi.post("/todos", newTodo);
+  } catch (error) {
+    alert("Todo 추가 중에 오류가 발생했습니다.");
+    console.error(error);
+    throw error;
+  }
 };
 
 const deleteTodo = async (id: string) => {
-  await todoApi.delete(`/todos/${id}`);
+  try {
+    await todoApi.delete(`/todos/${id}`);
+  } catch (error) {
+    alert("Todo 삭제 중에 오류가 발생했습니다.");
+    console.error(error);
+    throw error;
+  }
 };
 
 const updateTodo = async ({ id, isDone }: { id: string; isDone: boolean }) => {
-  await todoApi.patch(`/todos/${id}`, { isDone });
+  try {
+    await todoApi.patch(`/todos/${id}`, { isDone });
+  } catch (error) {
+    alert("Todo 업데이트 중에 오류가 발생했습니다.");
+    console.error(error);
+    throw error;
+  }
 };
 
 export default todoApi;
