@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { Todo } from "../types/Todo";
+import { TodoItemProps } from "../types/Todo";
 import {
   StDeleteButton,
   StItemContainer,
@@ -7,12 +7,6 @@ import {
   StTodoItemButtonSet,
   StUpdateButton
 } from "../../styles/TodoItemStyle";
-
-type TodoItemProps = {
-  todo: Todo;
-  clickDeleteTodoButton: (id: string) => void;
-  clickUpdateTodoButton: (id: string) => void;
-};
 
 const TodoItem = ({
   todo,
