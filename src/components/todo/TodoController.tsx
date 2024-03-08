@@ -5,6 +5,8 @@ import { Todo } from "../types/todo.d";
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { addTodo, deleteTodo, getTodos, updateTodo } from "../../apis/todoApi";
+import { StError, StLoading } from "../../styles/TodoControllerStyle";
+import Loading from "../../assets/Loading.gif";
 
 const TodoController: React.FC = () => {
   const queryClient = useQueryClient();
@@ -37,11 +39,16 @@ const TodoController: React.FC = () => {
   const { isLoading, isError, data } = useQuery("todos", getTodos);
 
   if (isLoading) {
-    return <p>로딩 중입니다..!</p>;
+    return (
+      <StLoading>
+        <img src={Loading} alt="Loading" />
+        잠시만 기다려 주세요.
+      </StLoading>
+    );
   }
 
   if (isError) {
-    return <p>오류가 발생하였습니다..!</p>;
+    return <StError>오류가 발생하였습니다.</StError>;
   }
 
   const workingTodos = data?.filter((item) => !item.isDone) || [];
