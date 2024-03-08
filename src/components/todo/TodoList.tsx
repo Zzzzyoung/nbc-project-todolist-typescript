@@ -1,21 +1,21 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import TodoItem from "./TodoItem";
-import { Todo } from "../type/Todo";
+import { Todo } from "../types/Todo";
 import { StListContainer, StTodoList } from "../../styles/TodoListStyle";
 
-interface TodoListProps {
+type TodoListProps = {
   headTitle: string;
   todos: Todo[];
   clickDeleteTodoButton: (id: string) => void;
   clickUpdateTodoButton: (id: string) => void;
-}
+};
 
-const TodoList: React.FC<TodoListProps> = ({
+const TodoList = ({
   headTitle,
   todos,
   clickDeleteTodoButton,
   clickUpdateTodoButton
-}) => {
+}: PropsWithChildren<TodoListProps>) => {
   return (
     <StListContainer>
       <h2>{headTitle}</h2>
