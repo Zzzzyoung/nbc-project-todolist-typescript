@@ -14,8 +14,8 @@ Todolist를 추가할 수 있으며, 삭제가 가능합니다. 완료/취소 �
 <br>
 
 ## 🖇️ 배포 링크
-
-- vercel
+### - vercel<br>
+https://nbc-project-todolist-typescript.vercel.app/
 
 <br>
 
