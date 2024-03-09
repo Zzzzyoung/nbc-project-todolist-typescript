@@ -17,7 +17,12 @@ const TodoForm = ({
     <StSubmitContainer onSubmit={clickAddTodoButton}>
       <StInputContainer>
         <label>제목</label>
-        <input type="text" value={title} onChange={onChangeTitleHandler} />
+        <input
+          type="text"
+          value={title}
+          onChange={onChangeTitleHandler}
+          autoFocus
+        />
         <label>내용</label>
         <input type="text" value={content} onChange={onChangeContentHandler} />
       </StInputContainer>
