@@ -3,10 +3,13 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { Todo } from "../types/todo.d";
 import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { addTodo, deleteTodo, getTodos, updateTodo } from "../../apis/todoApi";
+
 import { StError, StLoading } from "../../styles/TodoControllerStyle";
 import Loading from "../../assets/Loading.gif";
+import { QUERY_KEYS } from "../hooks/keys.constant";
+import { addTodo, deleteTodo, updateTodo } from "../hooks/mutationFunctions";
+import { useGetTodos } from "../hooks/useQuery";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const TodoController: React.FC = () => {
   const [title, setTitle] = useState<string>("");
@@ -24,30 +27,27 @@ const TodoController: React.FC = () => {
   const addTodoMutation = useMutation({
     mutationFn: addTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
     }
   });
 
   const deleteTodoMutation = useMutation({
     mutationFn: deleteTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
     }
   });
 
   const updateTodoMutation = useMutation({
     mutationFn: updateTodo,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.TODOS] });
     }
   });
 
   // useQuery
   // Todo 가져오기
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["todos"],
-    queryFn: getTodos
-  });
+  const { data, isLoading, isError } = useGetTodos();
 
   if (isLoading) {
     return (
