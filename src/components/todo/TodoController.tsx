@@ -3,13 +3,13 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { Todo } from "../types/todo.d";
 import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+
 import { StError, StLoading } from "../../styles/TodoControllerStyle";
 import Loading from "../../assets/Loading.gif";
 import { QUERY_KEYS } from "../hooks/keys.constant";
-import { getTodos } from "../hooks/queryFunctions";
 import { addTodo, deleteTodo, updateTodo } from "../hooks/mutationFunctions";
 import { useGetTodos } from "../hooks/useQuery";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const TodoController: React.FC = () => {
   const [title, setTitle] = useState<string>("");
