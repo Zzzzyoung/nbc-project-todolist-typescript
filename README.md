@@ -61,6 +61,11 @@ src
 │   └── todoApi.ts                 # axios를 사용하여 서버로 HTTP 요청
 ├── assets
 ├── components
+│   ├── hooks                      # useQuery, useMutation 관련 폴더
+│   │   ├── keys.constant.ts       # queryKey
+│   │   ├── mutationFunctions.ts   # mutationFn 
+│   │   ├── queryFuctions.ts       # queryFn
+│   │   └── useQuery.ts            # useQuery
 │   ├── layout                     
 │   │   ├── Footer.tsx             # 푸터
 │   │   └── Header.tsx             # 헤더
@@ -68,7 +73,7 @@ src
 │   │   ├── TodoController.tsx     # todo 폴더 내 컴포넌트 제어
 │   │   ├── TodoForm.tsx           # 새로운 Todo 추가
 │   │   ├── TodoItem.tsx           # 각 Todo 아이템마다 삭제 및 상태 변경(완료/취소)
-│   │   └── TodoList.ssx           # 완료된 항목과 진행 중인 항목으로 나누어 현재 Todo 목록 표시
+│   │   └── TodoList.tsx           # 완료된 항목과 진행 중인 항목으로 나누어 현재 Todo 목록 표시
 │   └── types
 │       └── todo.d.tsx             # 타입 정의
 ├── redux
