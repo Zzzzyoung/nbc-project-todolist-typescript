@@ -1,4 +1,3 @@
-import { PropsWithChildren } from "react";
 import TodoItem from "./TodoItem";
 import { TodoListProps } from "../types/todo.d";
 import { StListContainer, StTodoList } from "../../styles/TodoListStyle";
@@ -8,7 +7,7 @@ const TodoList = ({
   todos,
   clickDeleteTodoButton,
   clickUpdateTodoButton
-}: PropsWithChildren<TodoListProps>) => {
+}: TodoListProps) => {
   return (
     <StListContainer>
       <h2>{headTitle}</h2>

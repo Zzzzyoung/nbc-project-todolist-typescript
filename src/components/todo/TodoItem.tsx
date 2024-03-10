@@ -1,4 +1,3 @@
-import { PropsWithChildren } from "react";
 import { TodoItemProps } from "../types/todo.d";
 import {
   StDeleteButton,
@@ -12,7 +11,7 @@ const TodoItem = ({
   todo,
   clickDeleteTodoButton,
   clickUpdateTodoButton
-}: PropsWithChildren<TodoItemProps>) => {
+}: TodoItemProps) => {
   return (
     <StItemContainer key={todo.id}>
       <StTodoItem>
