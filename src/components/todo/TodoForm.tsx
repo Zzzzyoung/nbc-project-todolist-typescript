@@ -1,4 +1,3 @@
-import { PropsWithChildren } from "react";
 import {
   StInputContainer,
   StSubmitContainer,
@@ -12,7 +11,7 @@ const TodoForm = ({
   onChangeTitleHandler,
   onChangeContentHandler,
   clickAddTodoButton
-}: PropsWithChildren<TodoFormProps>) => {
+}: TodoFormProps) => {
   return (
     <StSubmitContainer onSubmit={clickAddTodoButton}>
       <StInputContainer>
