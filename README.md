@@ -4,7 +4,7 @@ JiYoung's To Do List
 
 ## 👩‍💻 프로젝트 소개
 https://github.com/Zzzzyoung/nbc-project-todolist 에서 발전시킨 프로젝트입니다. 기존에 JavaScript로 작성했던 Todolist를 TypeScript를 이용해 다시 작성하였습니다. <br>
-Todolist를 추가할 수 있으며, 삭제가 가능합니다. 완료/취소 버튼을 통해 Todolist의 완료 여부에 따라 Todolist의 목록을 분리할 수 있습니다.
+Todolist를 추가할 수 있으며, 삭제가 가능합니다. 완료/취소 버튼을 통해 Todolist의 완료 여부에 따라 Todolist의 목록을 분리할 수 있습니다. <br>
 － 홈 화면
 ![image](https://github.com/Zzzzyoung/nbc-project-todolist-typescript/assets/154482077/e46478d0-1594-45a1-a8c6-e794ef4e2eb8)
 <br>
